@@ -4,7 +4,6 @@ package org.example
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
-import java.net.http.HttpResponse.BodyHandler
 import java.net.http.HttpResponse.BodyHandlers
 
 fun main() {
@@ -15,7 +14,10 @@ fun main() {
     val response = httpClient.send(request, BodyHandlers.ofString())
 
     val json = response.body()
-
+    val meuJogo = Jogo()
+    meuJogo.titulo = "TITULO AQUI"
+    meuJogo.capa = "CAPA AQUI"
+    println(meuJogo)
     println(json)
 
 }
