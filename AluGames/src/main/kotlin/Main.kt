@@ -1,7 +1,9 @@
-package org.example
+
 
 
 import com.google.gson.Gson
+import org.example.InfoJogo
+import org.example.Jogo
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -25,7 +27,7 @@ fun main() {
 
     val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
 
-    var meuJogo:Jogo? = null //meuJogo do tipo Jogo recebendo nulo
+    var meuJogo: Jogo? = null //meuJogo do tipo Jogo recebendo nulo
 
     val resultado = runCatching {
          meuJogo = Jogo(
