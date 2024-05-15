@@ -2,7 +2,7 @@ package org.example
 
 class Jogo(val titulo:String, val capa:String) {
 
-    val descricao = ""
+    var descricao:String? = ""
 
     override fun toString(): String {
         return "Meu Jogo: \n" +

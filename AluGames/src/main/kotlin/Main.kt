@@ -10,6 +10,7 @@ import java.util.Scanner
 
 fun main() {
     val leitura = Scanner(System.`in`)
+
     println("DIGITE UM CÓDIGO DE JOGO PARA BUSCAR: ")
     val busca = leitura.nextLine()
     val httpClient: HttpClient = HttpClient.newHttpClient()
@@ -24,8 +25,27 @@ fun main() {
 
     val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
 
-    val meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
+    var meuJogo:Jogo? = null //meuJogo do tipo Jogo recebendo nulo
 
-    println(meuJogo)
-
+    val resultado = runCatching {
+         meuJogo = Jogo(
+            meuInfoJogo.info.title,
+            meuInfoJogo.info.thumb
+        )
+        println(meuJogo)
+    }
+    resultado.onFailure {
+        println("Jogo inexistente, tente outro id")
+    }
+    resultado.onSuccess {
+        println("Deseja inserir uma descrição personalizada ? S/N")
+        val opcao = leitura.nextLine()
+        if (opcao.equals("S", true)){
+            println("Insira a descrição personalizada para o Jogo:")
+            val descricaoPersonalizada = leitura.nextLine()
+            meuJogo?.descricao = descricaoPersonalizada
+        }else{
+            meuJogo?.descricao = meuJogo?.titulo
+        }
+    }
 }
