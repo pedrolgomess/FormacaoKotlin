@@ -1,5 +1,7 @@
 package br.com.alura.alugames.modelos.Gamer
 
+import kotlin.random.Random
+
 data class Gamer(var nome: String, var email: String){
     var dataNascimento: String? = null
     var usuario: String? = null
@@ -7,6 +9,7 @@ data class Gamer(var nome: String, var email: String){
     constructor(nome: String, email: String, dataNascimento: String, usuario: String): this(nome, email){
         this.dataNascimento = dataNascimento
         this.usuario = usuario
+        criarIdInterno()
 
     }
 
@@ -18,5 +21,9 @@ data class Gamer(var nome: String, var email: String){
                 "usuario=$usuario, " +
                 "idInterno=$idInterno)"
     }
-
+    fun criarIdInterno(){
+        val numero = Random.nextInt()
+        val tag = String.format("%04d", numero)
+        idInterno = "$usuario#$tag"
+    }
 }
