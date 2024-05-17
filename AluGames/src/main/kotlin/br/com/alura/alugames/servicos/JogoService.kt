@@ -7,7 +7,7 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
-class ConsumoApi {
+class JogoService {
 
     fun buscaJogo(id:String): InfoJogo {
         val endereco = "https://www.cheapshark.com/api/1.0/games?id=$id"
