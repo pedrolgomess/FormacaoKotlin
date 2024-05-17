@@ -3,8 +3,7 @@ package br.com.alura.alugames.principal
 import br.com.alura.alugames.modelos.Gamer.Gamer
 
 fun main() {
-
-    val gamer1 = Gamer(" ", "jacque@email.com")
+    val gamer1 = Gamer("Jacque", "jacque@email.com")
     println(gamer1)
 
     val gamer2 = Gamer(
@@ -18,9 +17,11 @@ fun main() {
     gamer1.let {
         it.dataNascimento = "18/09/2000"
         it.usuario = "jacqueskywalker"
+
     }.also {
         println(gamer1.idInterno)
     }
     println(gamer1)
-
+    gamer1.usuario = "jacque"
+    println(gamer1)
 }

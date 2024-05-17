@@ -2,15 +2,20 @@ package br.com.alura.alugames.principal
 
 import br.com.alura.alugames.modelos.Gamer.Gamer
 import br.com.alura.alugames.modelos.Jogo.Jogo
+import br.com.alura.alugames.servicos.GamerService
 import br.com.alura.alugames.servicos.JogoService
+import br.com.alura.alugames.utils.tranformarEmIdade
 
 import java.util.Scanner
 
 fun main() {
     val leitura = Scanner(System.`in`)
     val gamer = Gamer.criarGamer(leitura)
-    //faça isso
-    do{
+    println("Cadastro concluído com sucesso. Dados do gamer:")
+    println(gamer)
+    println("Idade do gamer: " + gamer.dataNascimento?.tranformarEmIdade())
+
+    do {
         println("Digite um código de jogo para buscar:")
         val busca = leitura.nextLine()
 
@@ -49,7 +54,8 @@ fun main() {
         println("Deseja buscar um novo jogo? S/N")
         val resposta = leitura.nextLine()
 
-    }while (resposta.equals("s", true)) // enquanto
+    } while (resposta.equals("s", true))
+
     println("Jogos buscados:")
     println(gamer.jogosBuscados)
 
@@ -81,4 +87,5 @@ fun main() {
     println(gamer.jogosBuscados)
 
     println("Busca finalizada com sucesso.")
+
 }
