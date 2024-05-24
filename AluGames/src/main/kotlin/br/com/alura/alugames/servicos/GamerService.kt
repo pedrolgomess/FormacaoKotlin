@@ -13,7 +13,19 @@ import java.net.http.HttpResponse
 class GamerService {
 
     fun buscaGamer(): List<Gamer> {
-        val endereco = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
+
+        val json = consultaDados("https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json")
+
+        val gson = Gson()
+
+        val tipoRetorno = object : TypeToken<List<InfoGamer>>() {}.type
+        val listGamer:List<InfoGamer> = gson.fromJson(json, tipoRetorno)
+
+        val listaConvertida = listGamer.map { infoGamerJson -> infoGamerJson.criaGamer() }
+        return listaConvertida;
+    }
+    // retornando Json da api
+    fun consultaDados(endereco: String) : String{
 
         val client: HttpClient = HttpClient.newHttpClient()
         val request = HttpRequest.newBuilder()
@@ -22,18 +34,6 @@ class GamerService {
         val response = client
             .send(request, HttpResponse.BodyHandlers.ofString())
 
-        val json = response.body()
-
-        val gson = Gson()
-        // Para informarmos para o JSON qual o tipo que queremos receber, podemos usar um objeto do próprio JSON, o TypeToken.
-        // Ele nos permite informar o tipo que queremos retornar na conversão do JSON e permite a identificação desse tipo.
-        // precisamos passar o método que fará o JSON identificar esse tipo. Para isso, abrimos o escopo usando as chaves ({}) e escrevemos .type.
-        // O .type será o responsável por passar para o JSON qual o tipo que queremos receber.
-
-        val tipoRetorno = object : TypeToken<List<InfoGamer>>() {}.type
-        val listGamer:List<InfoGamer> = gson.fromJson(json, tipoRetorno)
-
-        val listaConvertida = listGamer.map { infoGamerJson -> infoGamerJson.criaGamer() }
-        return listaConvertida;
+        return response.body()
     }
 }
