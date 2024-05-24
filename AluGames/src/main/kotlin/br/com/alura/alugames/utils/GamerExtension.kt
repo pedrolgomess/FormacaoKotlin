@@ -1,8 +1,8 @@
 package br.com.alura.alugames.utils
 
 import br.com.alura.alugames.modelos.Gamer.Gamer
-import br.com.alura.alugames.modelos.Gamer.InfoGamer
+import br.com.alura.alugames.modelos.Gamer.InfoGamerJson
 
-fun InfoGamer.criaGamer(): Gamer {
+fun InfoGamerJson.criaGamer(): Gamer {
     return Gamer(this.nome, this.email, this.dataNascimento, this.usuario)
 }

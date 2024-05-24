@@ -21,6 +21,7 @@ fun main() {
     }.also {
         println(gamer1.idInterno)
     }
+
     println(gamer1)
     gamer1.usuario = "jacque"
     println(gamer1)
