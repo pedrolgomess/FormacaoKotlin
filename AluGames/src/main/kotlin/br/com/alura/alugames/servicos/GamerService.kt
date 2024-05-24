@@ -1,6 +1,8 @@
 package br.com.alura.alugames.servicos
 
+import br.com.alura.alugames.modelos.Gamer.Gamer
 import br.com.alura.alugames.modelos.Gamer.InfoGamer
+import br.com.alura.alugames.utils.criaGamer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.net.URI
@@ -10,7 +12,7 @@ import java.net.http.HttpResponse
 
 class GamerService {
 
-    fun buscaGamer(): List<InfoGamer> {
+    fun buscaGamer(): List<Gamer> {
         val endereco = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
         val client: HttpClient = HttpClient.newHttpClient()
@@ -31,6 +33,7 @@ class GamerService {
         val tipoRetorno = object : TypeToken<List<InfoGamer>>() {}.type
         val listGamer:List<InfoGamer> = gson.fromJson(json, tipoRetorno)
 
-        return listGamer
+        val listaConvertida = listGamer.map { infoGamerJson -> infoGamerJson.criaGamer() }
+        return listaConvertida;
     }
 }

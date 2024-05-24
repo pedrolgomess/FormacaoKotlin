@@ -4,6 +4,6 @@ data class InfoGamer(
     val nome: String,
     val email: String,
     val dataNascimento: String,
-    val usuarios: String){
+    val usuario: String){
 
 }
