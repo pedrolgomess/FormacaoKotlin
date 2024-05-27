@@ -1,5 +1,6 @@
 package br.com.alura.alugames.modelos.Gamer
 
+import br.com.alura.alugames.modelos.Aluguel.Aluguel
 import br.com.alura.alugames.modelos.Jogo.Jogo
 import java.util.*
 import kotlin.random.Random
@@ -78,5 +79,8 @@ data class Gamer(var nome: String, var email: String){
                 return Gamer (nome, email)
             }
         }
+    }
+    fun alugaJogo(jogo: Jogo,): Aluguel{
+        return Aluguel(this, jogo)
     }
 }
